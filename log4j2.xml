@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="Console">
+            <!--<PatternLayout pattern="%d{yyyy-MMM-dd hh:mm:ss a } %level %c - %m %n" />-->
+            <PatternLayout>
+                <Pattern>[%5p] %d [%X{userName}] [%X{remoteIp}] %c %m%n</Pattern>
+            </PatternLayout>
+        </Console>
+
+        <Console name="stdout" target="SYSTEM_OUT">
+            <!--<PatternLayout pattern="%d{yyyy-MMM-dd hh:mm:ss a } %level %c - %m %n" />-->
+            <PatternLayout>
+                <Pattern>[%5p] %d [%X{userName}] [%X{remoteIp}] %c %m%n</Pattern>
+            </PatternLayout>
+        </Console>
+
+        <RollingFile name="FILE" fileName="file-parser.log" filePattern="-%d{MM-dd-yyyy}.log.gz"
+                     ignoreExceptions="false">
+            <PatternLayout>
+                <!--<Pattern>%d %p %c{1.} [%t] %m%n</Pattern>-->
+                <Pattern>[%5p] %d [%X{userName}] [%X{remoteIp}] %c %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+        <Root level="DEBUG">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="FILE"/>
+        </Root>
+
+        <Logger name="org.hibernate" level="info" additivity="false">
+            <AppenderRef ref="FILE" />
+            <AppenderRef ref="Console" />
+        </Logger>
+
+    </Loggers>
+</Configuration>

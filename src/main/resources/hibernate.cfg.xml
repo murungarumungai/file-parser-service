@@ -1,0 +1,22 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.driver_class">net.sourceforge.jtds.jdbc.Driver</property>
+        <!--        <property name="hibernate.connection.url">
+                    "jdbc:sqlserver://localhost:1433;DatabaseName=tms"</property>-->
+        <property name="connection.url">jdbc:jtds:sqlserver://localhost:1433/TMS</property>
+        <property name="hibernate.connection.username">sa</property>
+        <property name="hibernate.connection.password">brzk45zzc5</property>
+        <property name="hibernate.connection.pool_size">10</property>
+        <property name="dialect">org.hibernate.dialect.SQLServer2008Dialect</property>
+        <property name="show_sql">false</property>
+        <property name="hibernate.hbm2ddl.auto">validate</property>
+
+        <mapping class="entity.LogEntry"/>
+
+
+    </session-factory>
+</hibernate-configuration>
+
