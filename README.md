@@ -40,3 +40,11 @@ Run the command
   -  `page_size`
   -  `offset`
 - Route - `/api/v1/logEntries`
+
+# Table Script
+`CREATE TABLE logs(
+id INT AUTO_INCREMENT not null PRIMARY KEY,
+request_params varchar(200) not null,
+request_ip varchar(30) not null,
+performance_metrics varchar(20) not null,
+UNIQUE (request_params,request_ip,performance_metrics));`
